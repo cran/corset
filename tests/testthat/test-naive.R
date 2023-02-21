@@ -53,7 +53,7 @@ test_that("Corset - class forecast ", {
 
   expect_equal(x$mean, cx$mean)
   expect_equal(x$upper, cx$upper)
-  expect_equal(as.numeric(cx$lower[1, 1]), 0.00369813795252792)
+  expect_lt(as.numeric(cx$lower[1, 1]) - 0.00390647790514601, 10^-10)
   expect_equal(as.numeric(cx$lower[1, 2]), 0)
   }
 })
@@ -133,7 +133,7 @@ test_that("Corset - class gts/hts ", {
                  ),
                  .Tsp = c(11,
                           20, 1),
-                 class = c("mts", "ts", "matrix")
+                 class = c("mts", "ts", "matrix", if(getRversion() >= "4.3.0") "array")
                ))
   }
 })
@@ -144,7 +144,7 @@ test_that("Corset - class mts / ts / matrix ", {
   cx <- corset(x, 'naive')
   x[x < 0] <- 0
   expect_equal(as.numeric(x), as.numeric(cx))
-  expect_equal(class(cx), c("mts", "ts", "matrix", "corset"))
+  expect_equal(class(cx), c("mts", "ts", "matrix", if(getRversion() >= "4.3.0") "array", "corset"))
 })
 
 

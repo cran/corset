@@ -11,7 +11,7 @@ The \code{corset} package intends to be a companion to series and time series an
 
 The \code{corset} function allows to introduce boundary constraints in series, time series as well as in \code{forecast} & \code{gts/hts} objects.
 
-In particular, when applied on a \code{forecast} object it does not only apply the boundaries to the forecast object but aslo to its confidence intervals.
+In particular, when applied on a \code{forecast} object it does not only apply the boundaries to the forecast object but also to its confidence intervals.
 }
 \usage{
 
@@ -26,7 +26,7 @@ corset(x, method = c('bezier', 'exp', 'naive'),
      Numerical series or time series.
   }
   \item{method}{
-    There are three different methodolgies available to bound \code{x}:
+    There are three different methodologies available to bound \code{x}:
      - Partial Bezier (default)
      - Exponential
      - Naive
@@ -56,11 +56,11 @@ corset(x, method = c('bezier', 'exp', 'naive'),
 
      In general the Partial Bezier method should be preferred and tuned with the proximity parameter. However, the Partial Bezier method has precision problems when using a large number of points, in those cases, the Exponential method or the Naive method might help.
 
-  The \code{proximity} parameter is an positive or zero integer value (rounded otherwise) which expresses the silimilarity desired between the input and the bounded output.
+  The \code{proximity} parameter is an positive or zero integer value (rounded otherwise) which expresses the similarity desired between the input and the bounded output.
   The higher \code{proximity} is  the closer the bounded output will be to the output of the Naive method. If the value is larger than 100 the result is equivalent to use the Naive method.
 }
 \value{
-  The value returned will be of the same class of the input \code{x} witht he boundaries applied to its values.
+  The value returned will be of the same class of the input \code{x} with the boundaries applied to its values.
 }
 
 \author{

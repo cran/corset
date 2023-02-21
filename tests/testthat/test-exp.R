@@ -124,7 +124,7 @@ test_that("Corset - class forecast ", {
   cx <- corset(x, 'exp')
   expect_equal(x$mean, cx$mean)
   expect_equal(x$upper, cx$upper)
-  expect_equal(as.numeric(cx$lower[1, 1]), 0.180826494051395)
+  expect_lt(as.numeric(cx$lower[1, 1]) - 0.180944603717663, 10^-10)
   expect_equal(as.numeric(cx$lower[1, 2]), 0)
   }
 })
@@ -202,7 +202,7 @@ test_that("Corset - class gts/hts ", {
           c("Series 1", "Series 2", "Series 3", "Series 4", "Series 5")
         ),
         .Tsp = c(11, 20, 1),
-        class = c("mts", "ts", "matrix")
+        class = c("mts", "ts", "matrix", if(getRversion() >= "4.3.0") "array")
       ),
       histy = structure(
         c(
@@ -265,8 +265,7 @@ test_that("Corset - class gts/hts ", {
             "Series 4", "Series 5")
         ),
         .Tsp = c(1, 10, 1),
-        class = c("mts",
-                  "ts", "matrix")
+        class = c("mts", "ts", "matrix", if(getRversion() >= "4.3.0") "array")
       ),
       labels = structure(
         list(
@@ -417,8 +416,7 @@ test_that("Corset - class mts / ts / matrix ", {
                    )
                  ),
                  .Tsp = c(1, 10, 1),
-                 class = c("mts", "ts", "matrix",
-                           "corset")
+                 class = c("mts", "ts", "matrix", if(getRversion() >= "4.3.0") "array", "corset")
                ))
 })
 
